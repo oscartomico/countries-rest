@@ -1,45 +1,50 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+======= HOW TO INSTALL ======= 
+This instalation it was in Linux Ubuntu 18.04.
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+= Requeriments 
+* MySQL >= 5.7.23 
+* Java 1.8
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+= Tecnologies used 
+* Spring Boot for develop. 
+* JPA Repository for persistence. 
+* Dozer for mapping entities. 
+* JUnit and Mockito for testing.
 
----
+= Steps 
+== Install MySQL 
+1.- Type in command line: 
+sudo apt install mysql-server
 
-## Edit a file
+2.- (Only if you have problems with default root user) Create a new user with all privilegies. 
+Type in command line:
+sudo mysql -u root -p 
+Press enter. 
+Then in mysql console type:
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
+Where username is the name of your new user and password the new pass.
+We give him all privilegies with:
 
----
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' IDENTIFIED BY 'password';
 
-## Create a file
+3.- (You can do this step using Mysql Workbench or another Mysql client manager if you prefer) Create new database and table for countries. In Mysql command line type:
 
-Next, you’ll add a new file to this repository.
+CREATE DATABASE countries;
+USE countries;
+CREATE TABLE 'countries'.'countries' ('id' INT NOT NULL AUTO_INCREMENT, 'name' VARCHAR(45) NULL, 'population' INT NULL, PRIMARY KEY ('id'));
 
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
+== Install Java 1.8 
+1.- Type Linux in command line:
+sudo apt install openjdk-8-jdk
 
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
+== Run the project 
+1.- Download sources from here.
 
----
+2.- Install maven sudo apt install maven
 
-## Clone a repository
+3.- Run the project (from the project folder). Type in command line:
+mvn spring-boot:run
 
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
-
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
-
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
+4.- Start to invoke Rest API
