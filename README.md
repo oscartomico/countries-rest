@@ -5,7 +5,7 @@ This instalation it was in Linux Ubuntu 18.04.
 * MySQL >= 5.7.23 
 * Java 1.8
 
-= Tecnologies used 
+= Technologies used 
 * Spring Boot for develop. 
 * JPA Repository for persistence. 
 * Dozer for mapping entities. 
